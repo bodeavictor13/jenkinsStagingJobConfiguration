@@ -1,0 +1,95 @@
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<project>
+<actions/>
+<description/>
+<keepDependencies>false</keepDependencies>
+<properties>
+<hudson.plugins.buildblocker.BuildBlockerProperty plugin="build-blocker-plugin@1.7.8">
+<useBuildBlocker>false</useBuildBlocker>
+<blockLevel>GLOBAL</blockLevel>
+<scanQueueFor>DISABLED</scanQueueFor>
+<blockingJobs/>
+</hudson.plugins.buildblocker.BuildBlockerProperty>
+<com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty plugin="naginator@1.18.2">
+<optOut>false</optOut>
+</com.chikli.hudson.plugin.naginator.NaginatorOptOutProperty>
+<com.sonyericsson.rebuild.RebuildSettings plugin="rebuild@1.34">
+<autoRebuild>false</autoRebuild>
+<rebuildDisabled>false</rebuildDisabled>
+</com.sonyericsson.rebuild.RebuildSettings>
+<hudson.model.ParametersDefinitionProperty>
+<parameterDefinitions>
+<hudson.model.StringParameterDefinition>
+<name>param1</name>
+<defaultValue>1</defaultValue>
+<trim>false</trim>
+</hudson.model.StringParameterDefinition>
+<hudson.model.StringParameterDefinition>
+<name>param2</name>
+<defaultValue>2</defaultValue>
+<trim>false</trim>
+</hudson.model.StringParameterDefinition>
+<hudson.model.StringParameterDefinition>
+<name>testsToRun</name>
+<trim>false</trim>
+</hudson.model.StringParameterDefinition>
+</parameterDefinitions>
+</hudson.model.ParametersDefinitionProperty>
+</properties>
+<scm class="hudson.plugins.git.GitSCM" plugin="git@5.0.0">
+<configVersion>2</configVersion>
+<userRemoteConfigs>
+<hudson.plugins.git.UserRemoteConfig>
+<url>https://github.com/bodeavictor13/hpe-demo-app.git</url>
+</hudson.plugins.git.UserRemoteConfig>
+</userRemoteConfigs>
+<branches>
+<hudson.plugins.git.BranchSpec>
+<name>*/master</name>
+</hudson.plugins.git.BranchSpec>
+</branches>
+<doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+<submoduleCfg class="empty-list"/>
+<extensions/>
+</scm>
+<assignedNode>linux-mqm-tests</assignedNode>
+<canRoam>false</canRoam>
+<disabled>false</disabled>
+<blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+<blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+<jdk>(System)</jdk>
+<triggers/>
+<concurrentBuild>false</concurrentBuild>
+<builders>
+<hudson.tasks.Maven>
+<targets>clean install verify</targets>
+<mavenName>maven-3.5.0</mavenName>
+<usePrivateRepository>false</usePrivateRepository>
+<settings class="jenkins.mvn.DefaultSettingsProvider"/>
+<globalSettings class="jenkins.mvn.DefaultGlobalSettingsProvider"/>
+<injectBuildVariables>false</injectBuildVariables>
+</hudson.tasks.Maven>
+</builders>
+<publishers>
+<com.microfocus.application.automation.tools.octane.branches.BranchesPublisher plugin="hp-application-automation-tools-plugin@7.8">
+<configurationId>8624a83c-eb78-47b4-b15e-101eb1d35d24</configurationId>
+<workspaceId>1002</workspaceId>
+<repositoryUrl>https://github.com/bodeavictor13/simple-tests-PR-alis.git</repositoryUrl>
+<credentialsId>octanedevopsregistrycred</credentialsId>
+<filter/>
+<scmTool>github_cloud</scmTool>
+<useSSHFormat>false</useSSHFormat>
+</com.microfocus.application.automation.tools.octane.branches.BranchesPublisher>
+<hudson.tasks.junit.JUnitResultArchiver plugin="junit@1189.v1b_e593637fa_e">
+<testResults>**/surefire-reports/TEST*.xml</testResults>
+<keepLongStdio>false</keepLongStdio>
+<healthScaleFactor>1.0</healthScaleFactor>
+<allowEmptyResults>false</allowEmptyResults>
+<skipPublishingChecks>false</skipPublishingChecks>
+<checksName/>
+<skipMarkingBuildUnstable>false</skipMarkingBuildUnstable>
+<skipOldReports>false</skipOldReports>
+</hudson.tasks.junit.JUnitResultArchiver>
+</publishers>
+<buildWrappers/>
+</project>
